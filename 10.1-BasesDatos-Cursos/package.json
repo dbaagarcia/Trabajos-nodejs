@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "moment": "^2.29.4",
+    "mysql": "^2.18.1"
+  },
+  "name": "bases-datos",
+  "version": "1.0.0",
+  "description": "Primera conexion a una base de datos",
+  "main": "servidor.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Curso Backend",
+  "license": "ISC"
+}
