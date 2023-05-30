@@ -9,10 +9,10 @@ const connection = mysql.createConnection({
 });
 
 function obtenerCursos(callback) {
-    connection.query('SELECT * FROM cursos', callback); // Consultar todos los usuarios en la base de datos
+    connection.query('SELECT * FROM cursos', callback); // Consultar todos los cursos en la base de datos
 }
 function obtenerEstudiantes(callback) {
-    connection.query('SELECT * FROM estudiantes', callback); // Consultar todos los usuarios en la base de datos
+    connection.query('SELECT * FROM estudiantes', callback); // Consultar todos los estudiantes en la base de datos
 }
 
 connection.connect((error) => { // Conectar a la base de datos
@@ -24,4 +24,4 @@ connection.connect((error) => { // Conectar a la base de datos
 module.exports = { 
     obtenerCursos: obtenerCursos, 
     obtenerEstudiantes: obtenerEstudiantes 
-}; // Exportar la función para obtener usuarios
+}; // Exportar la función para obtener la informacion
