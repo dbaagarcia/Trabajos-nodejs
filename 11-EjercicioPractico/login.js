@@ -11,4 +11,4 @@ function login(username, password) {
 }
 
 // Exporta la función de login para que pueda ser utilizada desde otros archivos
-module.exports = login;
+module.exports = {login};

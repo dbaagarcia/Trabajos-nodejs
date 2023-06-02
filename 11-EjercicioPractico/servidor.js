@@ -1,6 +1,6 @@
 const http = require('http');
 const fs = require('fs');
-const {login} = require('./login.js')
+const { login } = require('./login.js')
 
 const PUERTO = 3000
 
@@ -12,10 +12,11 @@ const server = http.createServer((req, res) => {
                 res.writeHead(500, { 'Content-Type': 'text/html' });
                 res.write('<h1>Error interno del servidor</h1>');
                 return res.end();
+            } else {
+                res.writeHead(200, { 'Content-Type': 'text/html' });
+                res.write(data);
+                return res.end();
             }
-            res.writeHead(200, { 'Content-Type': 'text/html' });
-            res.write(data);
-            return res.end();
         });
     } else if (req.url === '/login' && req.method === 'POST') {
         // Ruta de inicio de sesión - Validar credenciales
@@ -29,13 +30,37 @@ const server = http.createServer((req, res) => {
             const password = formData.get('password');
 
             // Validar las credenciales (ejemplo simplificado)
-            if (login(username,password)) {
+            if (login(username, password)) {
                 // Credenciales correctas - Redireccionar a página de éxito
-                res.writeHead(302, { 'Location': '/exito.html' });
+                res.writeHead(302, { 'Location': '/exito' });
                 return res.end();
             } else {
                 // Credenciales incorrectas - Redireccionar a página de autenticación incorrecta
-                res.writeHead(302, { 'Location': '/autenticacion-incorrecta.html' });
+                res.writeHead(302, { 'Location': '/autenticacion-incorrecta' });
+                return res.end();
+            }
+        });
+    } else if (req.url === '/exito' && req.method === 'GET') {
+        fs.readFile('exito.html', (error, data) => {
+            if (error) {
+                res.writeHead(500, { 'Content-Type': 'text/html' });
+                res.write('<h1>Error interno del servidor</h1>');
+                return res.end();
+            } else {
+                res.writeHead(200, { 'Content-Type': 'text/html' });
+                res.write(data);
+                return res.end();
+            }
+        });
+    } else if (req.url === '/autenticacion-incorrecta' && req.method === 'GET') {
+        fs.readFile('autenticacion-incorrecta.html', (error, data) => {
+            if (error) {
+                res.writeHead(500, { 'Content-Type': 'text/html' });
+                res.write('<h1>Error interno del servidor</h1>');
+                return res.end();
+            } else {
+                res.writeHead(200, { 'Content-Type': 'text/html' });
+                res.write(data);
                 return res.end();
             }
         });
